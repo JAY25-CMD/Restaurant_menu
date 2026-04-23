@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant-Menu Admin Dashboard</title>
+    <link rel="stylesheet" href="../conection/admin-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><i class="fas fa-utensils"></i><span>Admin Panel</span></div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#" data-section="dashboard" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#" data-section="orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="#" data-section="menu"><i class="fas fa-book-open"></i> Menu</a></li>
+                <li><a href="#" data-section="analytics"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="#" data-section="users"><i class="fas fa-user-friends"></i> Users</a></li>
+                <li><a href="#" data-section="settings"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-menu-toggle" id="mobileToggle" aria-label="Toggle mobile menu"><i
+                        class="fas fa-bars"></i></button>
+                <h2 id="pageTitle" style="font-size: 1.2rem;">Dashboard</h2>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <button id="darkModeToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+            </div>
+        </header>
+
+        <section id="dashboard" class="content-section active">
+            <div class="stats-grid">
+                <div class="stat-card"
+                    style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="background: #eef2ff; color: #4361ee; width: 50px; height: 50px; display: grid; place-items: center; border-radius: 10px;">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.5rem;">124</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Orders Today</p>
+                    </div>
+                </div>
+                <div class="stat-card"
+                    style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="background: #ecfdf5; color: #10b981; width: 50px; height: 50px; display: grid; place-items: center; border-radius: 10px;">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.5rem;">$1,240</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Revenue</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px;">
+                <h3 style="margin-bottom: 1rem;">Recent Orders</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentOrders">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="content-section">
+            <div style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem;">Add Menu Item</h3>
+                <form id="menuForm">
+                    <div class="form-grid">
+                        <input type="text" id="menuName" placeholder="Item Name" required
+                            style="padding: 10px; border-radius: 8px; border: 1px solid var(--secondary-color); background: var(--bg-main); color: var(--text-main);">
+                        <input type="number" id="menuPrice" placeholder="Price" required
+                            style="padding: 10px; border-radius: 8px; border: 1px solid var(--secondary-color); background: var(--bg-main); color: var(--text-main);">
+                        <select id="menuCategory" aria-label="Menu category"
+                            style="padding: 10px; border-radius: 8px; border: 1px solid var(--secondary-color); background: var(--bg-main); color: var(--text-main);">
+                            <option>Pizza</option>
+                            <option>Burger</option>
+                            <option>Drink</option>
+                        </select>
+                    </div>
+                    <button type="submit"
+                        style="background: var(--primary-color); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer;">Save
+                        Item</button>
+                </form>
+            </div>
+
+            <div class="table-container">
+                <table id="menuTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="menuList"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="orders" class="content-section">
+            <p>Order Management Details...</p>
+        </section>
+        <section id="analytics" class="content-section">
+            <p>Analytics Charts...</p>
+        </section>
+        <section id="users" class="content-section">
+            <p>User Control Panel...</p>
+        </section>
+        <section id="settings" class="content-section">
+            <p>Global Settings...</p>
+        </section>
+    </main>
+
+
+    <script src="../conection/function-page/admin-function.js"></script>
+
+</body>
+
+</html>
