@@ -36,9 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Dark Mode ---
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        darkModeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+
     darkModeToggle.addEventListener('click', () => {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        const newTheme = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
         darkModeToggle.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
     });
 
@@ -51,4 +59,39 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     renderData();
+
+    // --- Menu Form & Rendering ---
+    const menuForm = document.getElementById('menuForm');
+    const menuList = document.getElementById('menuList');
+    const menuName = document.getElementById('menuName');
+    const menuPrice = document.getElementById('menuPrice');
+    const menuCategory = document.getElementById('menuCategory');
+
+    let menuItems = JSON.parse(localStorage.getItem('menuItems')) || [];
+
+    const renderMenu = () => {
+        menuList.innerHTML = menuItems.map((item) => `
+            <tr>
+                <td>${item.name}</td>
+                <td>${item.category}</td>
+                <td>$${parseFloat(item.price).toFixed(2)}</td>
+            </tr>
+        `).join('');
+    };
+
+    menuForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newItem = {
+            name: menuName.value.trim(),
+            price: menuPrice.value,
+            category: menuCategory.value
+        };
+        if (!newItem.name || !newItem.price) return;
+        menuItems.push(newItem);
+        localStorage.setItem('menuItems', JSON.stringify(menuItems));
+        renderMenu();
+        menuForm.reset();
+    });
+
+    renderMenu();
 });
