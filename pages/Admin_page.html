@@ -30,11 +30,11 @@
             <ul>
                 <li><a href="#" data-section="dashboard" class="active"><i class="fas fa-home"></i> Dashboard</a>
                 </li>
-                <li><a href="#" data-section="orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="orders.html" data-section="orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
                 <li><a href="#" data-section="menu"><i class="fas fa-book-open"></i> Menu</a></li>
-                <li><a href="#" data-section="analytics"><i class="fas fa-chart-line"></i> Analytics</a></li>
-                <li><a href="#" data-section="users"><i class="fas fa-user-friends"></i> Users</a></li>
-                <li><a href="#" data-section="settings"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="analytics.html" data-section="analytics"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="users.html" data-section="users"><i class="fas fa-user-friends"></i> Users</a></li>
+                <li><a href="settings.html" data-section="settings"><i class="fas fa-cog"></i> Settings</a></li>
             </ul>
         </nav>
     </aside>
@@ -101,51 +101,106 @@
         </section>
 
         <section id="menu" class="content-section">
-            <div style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
-                <h3 style="margin-bottom: 1rem;">Add Menu Item</h3>
-                <form id="menuForm">
-                    <div class="form-grid">
-                        <input type="text" id="menuName" placeholder="Item Name" required
-                            style="padding: 10px; border-radius: 8px; border: 1px solid var(--secondary-color); background: var(--bg-main); color: var(--text-main);">
-                        <input type="number" id="menuPrice" placeholder="Price" required
-                            style="padding: 10px; border-radius: 8px; border: 1px solid var(--secondary-color); background: var(--bg-main); color: var(--text-main);">
-                        <select id="menuCategory" aria-label="Menu category"
-                            style="padding: 10px; border-radius: 8px; border: 1px solid var(--secondary-color); background: var(--bg-main); color: var(--text-main);">
-                            <option>Pizza</option>
-                            <option>Burger</option>
-                            <option>Drink</option>
-                        </select>
+            <div class="menu-form-card">
+                <div class="menu-form-header">
+                    <h3><i class="fas fa-plus-circle"></i> Add New Menu Item</h3>
+                    <p>Fill in the details below to add a new item to your restaurant menu.</p>
+                </div>
+                <form id="menuForm" class="menu-form">
+                    <div class="menu-form-body">
+                        <div class="menu-image-upload">
+                            <label class="image-upload-label">Item Image</label>
+                            <div class="image-upload-area" id="imageUploadArea">
+                                <input type="file" id="menuImage" accept="image/*" hidden>
+                                <div class="image-preview" id="imagePreview">
+                                    <img src="" alt="Preview" id="previewImg" hidden>
+                                    <div class="upload-placeholder" id="uploadPlaceholder">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Drag & drop or click to upload</span>
+                                        <small>JPG, PNG up to 5MB</small>
+                                    </div>
+                                </div>
+                                <button type="button" class="upload-btn" id="uploadBtn">
+                                    <i class="fas fa-camera"></i> Choose Image
+                                </button>
+                                <button type="button" class="remove-image-btn" id="removeImageBtn" hidden>
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="menu-fields">
+                            <div class="form-group">
+                                <label for="menuName">Item Name <span class="required">*</span></label>
+                                <input type="text" id="menuName" placeholder="e.g. Margherita Pizza" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="menuPrice">Price <span class="required">*</span></label>
+                                    <div class="price-input">
+                                        <span class="currency">Tsh</span>
+                                        <input type="number" id="menuPrice" placeholder="0.00" required min="0" step="0.01">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="menuCategory">Category <span class="required">*</span></label>
+                                    <select id="menuCategory" required>
+                                        <option value="" disabled selected>Select category</option>
+                                        <option value="Pizza">Pizza</option>
+                                        <option value="Burger">Burger</option>
+                                        <option value="Drink">Drink</option>
+                                        <option value="Dessert">Dessert</option>
+                                        <option value="Salad">Salad</option>
+                                        <option value="Main Course">Main Course</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="menuDescription">Description</label>
+                                <textarea id="menuDescription" rows="3" placeholder="Brief description of the item..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="menuAvailable" checked>
+                                    <span class="toggle-slider"></span>
+                                    Available for ordering
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit"style="background: var(--primary-color); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer;">Save
-                        Item</button>
+                    <div class="menu-form-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Item
+                        </button>
+                    </div>
                 </form>
             </div>
 
-            <div class="table-container">
-                <table id="menuTable">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody id="menuList"></tbody>
-                </table>
+            <div class="menu-table-card">
+                <div class="menu-table-header">
+                    <h3><i class="fas fa-list"></i> Menu Items</h3>
+                    <div class="table-actions">
+                        <input type="text" id="menuSearch" placeholder="Search items...">
+                        <button class="btn btn-outline" id="exportBtn"><i class="fas fa-download"></i> Export</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="menu-table" id="menuTable">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="menuList"></tbody>
+                    </table>
+                </div>
             </div>
-        </section>
-
-        <section id="orders" class="content-section">
-            <p>Order Management Details...</p>
-        </section>
-        <section id="analytics" class="content-section">
-            <p>Analytics Charts...</p>
-        </section>
-        <section id="users" class="content-section">
-            <p>User Control Panel...</p>
-        </section>
-        <section id="settings" class="content-section">
-            <p>Global Settings...</p>
         </section>
     </main>
 

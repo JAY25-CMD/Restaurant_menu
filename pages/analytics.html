@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Restaurant-Menu Admin</title>
+    <link rel="stylesheet" href="../conection/admin-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><img src="../image/admin.jpeg" alt="Admin Logo"
+                    style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;"><span>Admin Panel</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="Admin_page.html" data-section="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="orders.html" data-section="orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="Admin_page.html#menu" data-section="menu"><i class="fas fa-book-open"></i> Menu</a></li>
+                <li><a href="analytics.html" data-section="analytics" class="active"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="users.html" data-section="users"><i class="fas fa-user-friends"></i> Users</a></li>
+                <li><a href="settings.html" data-section="settings"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-menu-toggle" id="mobileToggle" aria-label="Toggle mobile menu"><i
+                        class="fas fa-bars"></i></button>
+                <h2 id="pageTitle" style="font-size: 1.2rem;">Analytics</h2>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <button id="darkModeToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+            </div>
+        </header>
+
+        <section id="analytics" class="content-section active">
+            <div class="stats-grid">
+                <div class="stat-card"
+                    style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="background: #eef2ff; color: #4361ee; width: 50px; height: 50px; display: grid; place-items: center; border-radius: 10px;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.5rem;">1,245</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Total Customers</p>
+                    </div>
+                </div>
+                <div class="stat-card"
+                    style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="background: #ecfdf5; color: #10b981; width: 50px; height: 50px; display: grid; place-items: center; border-radius: 10px;">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.5rem;">3,842</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Total Orders</p>
+                    </div>
+                </div>
+                <div class="stat-card"
+                    style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="background: #fef3c7; color: #92400e; width: 50px; height: 50px; display: grid; place-items: center; border-radius: 10px;">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.5rem;">Tsh 12,450</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Total Revenue</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px;">
+                <h3 style="margin-bottom: 1rem;">Sales Overview</h3>
+                <p>Analytics charts and detailed reports will be displayed here.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="../conection/function-page/admin-function.js"></script>
+</body>
+
+</html>
+
